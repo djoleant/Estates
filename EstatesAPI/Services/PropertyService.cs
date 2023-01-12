@@ -17,6 +17,8 @@ public class PropertyService
             estateDatabaseSettings.Value.PropertiesCollectionName);
     }
 
+    public IMongoCollection<Property> Collection { get { return _propertyCollection; } }
+
     public async Task<List<Property>> GetAsync() =>
        await _propertyCollection.Find(_ => true).ToListAsync();
 

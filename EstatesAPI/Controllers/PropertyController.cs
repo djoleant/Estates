@@ -1,6 +1,8 @@
 ﻿using EstatesAPI.Models;
 using EstatesAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace EstatesAPI.Controllers;
 
@@ -33,6 +35,31 @@ public class PropertyController : ControllerBase
         }
 
         return Ok(property);
+    }
+
+    [HttpGet]
+    [Route("FilterProperties")]
+    public async Task<IActionResult> Filter([FromQuery] string city, decimal? minArea, decimal? maxArea, PropertyType? propertyType, decimal? minPrice, decimal? maxPrice, bool? petFriendly)
+    {
+        var builder = Builders<Property>.Filter;
+        FilterDefinition<Property> filter = builder.Empty;//builder.Eq(p=>p.CityName,city) & builder.Gte(p=>p.Area, minArea);
+        if (!string.IsNullOrEmpty(city))
+            filter = filter & builder.Eq(p => p.CityName, city);
+        if (minArea != null)
+            filter = filter & builder.Gte(p => p.Area, minArea);
+        if (maxArea != null)
+            filter = filter & builder.Lte(p => p.Area, maxArea);
+        if (propertyType != null) 
+            filter=filter& builder.Eq(p => p.PropertyType, propertyType);
+        if(minPrice!=null)
+            filter = filter & builder.Gte(p => p.Price, minPrice);
+        if(maxPrice!=null)
+            filter=filter & builder.Lte(p => p.Price, maxPrice);
+        if (petFriendly != null)
+            filter = filter & builder.Eq(p => p.PetFriendly, petFriendly);
+      
+        var properties = _propertyService.Collection.Find(filter);
+        return Ok(await properties.ToListAsync());
     }
 
     // Post:
