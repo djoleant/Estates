@@ -6,4 +6,6 @@ public class EstateDatabaseSettings
     public string DatabaseName { get; set; }
     public string PropertiesCollectionName { get; set; }
     public string LandlordsCollectionName { get; set; }
+
+    public string ClientsCollectionName { get; set; }
 }

@@ -15,6 +15,7 @@ namespace EstatesAPI
 
             builder.Services.AddSingleton<PropertyService>();
             builder.Services.AddSingleton<LandlordService>();
+            builder.Services.AddSingleton<ClientService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
