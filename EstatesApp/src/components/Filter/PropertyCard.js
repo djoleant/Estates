@@ -41,7 +41,7 @@ export default function PropertyCard({
                         sx={{ display: "flex", alignItems: "center", gap: 1 }}
 
                     >
-                        <LocationOnIcon color="error" />
+                        <LocationOnIcon color="success" />
                         {address}
                     </Typography>
                     <Typography
@@ -53,25 +53,27 @@ export default function PropertyCard({
                     </Typography>
                 </Grid>
                 <Grid item xs={3}>
-                    <Box sx={{ display: "flex", gap: 0, flexDirection: "column" }}>
+                    <Box sx={{ display: "flex", gap: 0, flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
                         <Typography
                             align="left"
-                            variant="body1"
+                            variant="h5"
                             sx={{ display: "flex", alignItems: "center" }}
 
-                        >
-                            <AttachMoneyIcon color="success" />
-                            {price}
-                        </Typography>
-                        <Typography
-                            align="left"
-                            variant="body1"
-                            sx={{ display: "flex", alignItems: "center" }}
 
                         >
-                            <SquareFootIcon color="warning" />
+                            <SquareFootIcon color="warning" fontSize="large" />
                             {area}
                         </Typography>
+                        <Typography
+                            align="left"
+                            variant="h4"
+                            sx={{ display: "flex", alignItems: "center", fontWeight: "bold" }}
+                            color="error"
+                        >
+                            <AttachMoneyIcon color="error" fontSize="large" />
+                            {price}
+                        </Typography>
+
                     </Box>
                 </Grid>
             </Grid>

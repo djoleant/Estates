@@ -103,7 +103,7 @@ export default function FilterProperties(props) {
                                         photo={property.photos[0]}
                                         name={property.name}
                                         address={"Address here 99"}
-                                        price={"$ 100000"}
+                                        price={"100000"}
                                         area={"73 m²"}
                                     />
                                 </Grid>
