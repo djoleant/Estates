@@ -13,7 +13,7 @@ export default function PropertyCard({
     const navigate = useNavigate();
     //{/* backgroundColor: "#FEBB0277", border: "none" }}>*/}
     return (
-        <Card variant="outlined" sx={{ display: "flex", }}>
+        <Card variant="outlined" sx={{ display: "flex" }}>
             <CardMedia
                 component="img"
                 sx={{ height: 151, maxWidth: "35%" }}
@@ -30,7 +30,8 @@ export default function PropertyCard({
                         sx={{
                             display: '-webkit-box',
                             overflow: 'hidden',
-
+                            color: "#0071C2",
+                            fontWeight: "bold"
                         }}
                     >
                         {name}
@@ -41,7 +42,7 @@ export default function PropertyCard({
                         sx={{ display: "flex", alignItems: "center", gap: 1 }}
 
                     >
-                        <LocationOnIcon color="success" />
+                        <LocationOnIcon sx={{ color: "#FEBB02" }} />
                         {address}
                     </Typography>
                     <Typography
@@ -61,7 +62,7 @@ export default function PropertyCard({
 
 
                         >
-                            <SquareFootIcon color="warning" fontSize="large" />
+                            <SquareFootIcon sx={{ color: "#FEBB02" }} fontSize="large" />
                             {area}
                         </Typography>
                         <Typography

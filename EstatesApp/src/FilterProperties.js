@@ -30,14 +30,14 @@ import PetsIcon from '@mui/icons-material/Pets';
 export default function FilterProperties(props) {
 
     const [data, setData] = useState([
-        { id: "1", name: "Property Name", description: "This is some example description...", photos: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gelbensande3.jpg/1200px-Gelbensande3.jpg"] },
-        { id: "2", name: "Property Name", description: "This is some example description...", photos: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gelbensande3.jpg/1200px-Gelbensande3.jpg"] },
-        { id: "3", name: "Property Name", description: "This is some example description...", photos: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gelbensande3.jpg/1200px-Gelbensande3.jpg"] },
-        { id: "4", name: "Property Name", description: "This is some example description...", photos: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gelbensande3.jpg/1200px-Gelbensande3.jpg"] },
-        { id: "5", name: "Property Name", description: "This is some example description...", photos: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gelbensande3.jpg/1200px-Gelbensande3.jpg"] },
-        { id: "6", name: "Property Name", description: "This is some example description...", photos: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gelbensande3.jpg/1200px-Gelbensande3.jpg"] },
-        { id: "7", name: "Property Name", description: "This is some example description...", photos: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gelbensande3.jpg/1200px-Gelbensande3.jpg"] },
-        { id: "8", name: "Property Name", description: "This is some example description...", photos: ["https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gelbensande3.jpg/1200px-Gelbensande3.jpg"] }
+        { id: "1", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+        { id: "2", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+        { id: "3", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+        { id: "4", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+        { id: "5", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+        { id: "6", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+        { id: "7", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+        { id: "8", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] }
     ]);
 
     const [price, setPrice] = React.useState([0, 999999]);
@@ -59,7 +59,7 @@ export default function FilterProperties(props) {
             <React.Fragment>
                 <Grid container xs={12} spacing={3} sx={{ pt: 3 }}>
                     <Grid item xs={3} spacing={3} >
-                        <Paper variant="outlined" sx={{ position: "sticky", top: 90, p: 3,backgroundColor:"#FEBB02bb" }}>
+                        <Paper variant="outlined" sx={{ position: "sticky", top: 90, p: 3, backgroundColor: "#FEBB02bb", border: "none" }}>
                             Price range:
                             <Slider
                                 value={price}
@@ -80,15 +80,15 @@ export default function FilterProperties(props) {
                                 min={0}
                                 sx={{ mt: 5 }}
                             />
-                            <FormGroup sx={{ display: "flex", flexDirection: "row", gap: 2,justifyContent:"center" }}>
+                            <FormGroup sx={{ display: "flex", flexDirection: "row", gap: 2, justifyContent: "center" }}>
                                 <FormControlLabel control={<Checkbox defaultChecked icon={<HomeIcon color="disabled" />} checkedIcon={<HomeIcon />} />} label="House" />
-                                <FormControlLabel control={<Checkbox defaultChecked  icon={<ApartmentIcon color="disabled" />} checkedIcon={<ApartmentIcon />} />}label="Apartment" />
+                                <FormControlLabel control={<Checkbox defaultChecked icon={<ApartmentIcon color="disabled" />} checkedIcon={<ApartmentIcon />} />} label="Apartment" />
                             </FormGroup>
-                            <FormGroup sx={{ display: "flex", flexDirection: "row", gap: 2,justifyContent:"center" }}>
+                            <FormGroup sx={{ display: "flex", flexDirection: "row", gap: 2, justifyContent: "center" }}>
                                 <FormControlLabel control={<Checkbox defaultChecked icon={<PetsIcon color="disabled" />} checkedIcon={<PetsIcon />} />} label="Pet Friendly" />
-                                
+
                             </FormGroup>
-                            <Button variant="contained" fullWidth sx={{mt:3}}>Filter</Button>
+                            <Button variant="contained" fullWidth sx={{ mt: 3 }}>Filter</Button>
                         </Paper>
                     </Grid>
                     <Grid container item xs={9} spacing={3} sx={{ pt: 3 }}>
