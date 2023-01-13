@@ -11,9 +11,9 @@ export default function PropertyCard({
 }) {
 
     const navigate = useNavigate();
-
+    //{/* backgroundColor: "#FEBB0277", border: "none" }}>*/}
     return (
-        <Card variant="outlined" sx={{ display: "flex" }}>
+        <Card variant="outlined" sx={{ display: "flex", }}>
             <CardMedia
                 component="img"
                 sx={{ height: 151, maxWidth: "35%" }}

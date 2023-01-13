@@ -59,7 +59,7 @@ export default function FilterProperties(props) {
             <React.Fragment>
                 <Grid container xs={12} spacing={3} sx={{ pt: 3 }}>
                     <Grid item xs={3} spacing={3} >
-                        <Paper variant="outlined" sx={{ position: "sticky", top: 90, p: 3 }}>
+                        <Paper variant="outlined" sx={{ position: "sticky", top: 90, p: 3,backgroundColor:"#FEBB02bb" }}>
                             Price range:
                             <Slider
                                 value={price}

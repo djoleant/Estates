@@ -30,23 +30,23 @@ const getDesignTokens = (mode) => ({
     mode,
     ...(mode === "light"
       ? {
-          // palette values for light mode
-          primary: {
-            main: "#AF8DB7",
-          },
-          secondary: {
-            main: "#f50057",
-          },
-        }
+        // palette values for light mode
+        primary: {
+          main: "#003580",
+        },
+        secondary: {
+          main: "#f50057",
+        },
+      }
       : {
-          // palette values for dark mode
-          primary: {
-            main: "#AF8DB7",
-          },
-          secondary: {
-            main: "#f50057",
-          },
-        }),
+        // palette values for dark mode
+        primary: {
+          main: "#003580",
+        },
+        secondary: {
+          main: "#f50057",
+        },
+      }),
   },
   overrides: {
     MuiSwitch: {
@@ -82,7 +82,7 @@ const getDesignTokens = (mode) => ({
     },
   },
   shape: {
-    borderRadius: 16,
+    borderRadius: 8,
   },
   typography: {
     fontFamily: "Source Sans Pro",
@@ -93,7 +93,7 @@ const themeOptions = createTheme({
   palette: {
     type: "light",
     primary: {
-      main: "#228a8a",
+      main: "#27285C",
     },
     secondary: {
       main: "#f50057",
@@ -204,7 +204,7 @@ const themeOptions2 = createTheme({
 const themes = [themeOptions, themeOptions2];
 export let changeTheme;
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
 
 export default function App() {
   const [mode, setMode] = React.useState(
