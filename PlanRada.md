@@ -7,11 +7,11 @@
 - Homepage
 - Stranica gde su sve nekretnine (sa filterima, searchom)
 
-### Emilija
+#### Emilija
 - Stranica za dodavanje nekretnine
 - Stranica za konkretnu nekretninu (tu ide Q/A)
 
-### Đorđe
+#### Đorđe
 - Stranica za profil landlorda (lista nekretnina, njegova ocena) -> tu jei ocenjivanje
 - Stranica za profil clienta (zbog ocena) > tu jei ocenjivanje
 
