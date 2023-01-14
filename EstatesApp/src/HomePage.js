@@ -49,6 +49,14 @@ export default function HomePage(props) {
   //   }
   // };
 
+  const getData = async () => {
+    const resp = await fetch("http://localhost:5100/api/Property/Top");
+    if (resp.ok) {
+      const d = await (await resp).json();
+      setData(d);
+    }
+  }
+
   const update = () => {
     //getSearchData();
     props.reloadHeader();
@@ -63,6 +71,10 @@ export default function HomePage(props) {
     { id: "6", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] }
 
   ]);
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   return (
     <Box sx={{ backgroundImage: "url('" + process.env.PUBLIC_URL + "/images/back.svg')", backgroundSize: "100%" }}>
@@ -83,16 +95,16 @@ export default function HomePage(props) {
         <Grid fullwidth style={{ marginTop: 10, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", height: "10%" }}>
         </Grid>
         {/* <Divider style={{ marginTop: 10, marginBottom: 20 }}></Divider> */}
-        <Grid container xs={12} spacing={4} sx={{p:10}}>
+        <Grid container xs={12} spacing={4} sx={{ p: 10 }}>
           {
             data.map(d => (
               <Grid item xs={12} md={4}>
                 <PropertyCard
                   photo={d.photos[0]}
-                  address={"address here"}
-                  area="24"
-                  price={10000}
-                  name="Property name"
+                  address={d.address}
+                  area={d.area}
+                  price={d.price}
+                  name={d.name}
                 />
               </Grid>
             ))

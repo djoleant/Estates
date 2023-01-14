@@ -62,6 +62,14 @@ public class PropertyController : ControllerBase
         return Ok(await properties.ToListAsync());
     }
 
+    [HttpGet]
+    [Route("Top")]
+    public async Task<IActionResult> GetTopProperties()
+    {
+        var properties = _propertyService.Collection.Find(_ => true).Limit(6);
+        return Ok(await properties.ToListAsync());
+    }
+
     // Post:
 
     [HttpPost]
