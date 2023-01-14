@@ -5,7 +5,6 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import getIcon from "./Icons";
 
 export default function PropertyCard({
     name, photo, description, address, area, price, amenities
@@ -14,17 +13,17 @@ export default function PropertyCard({
     const navigate = useNavigate();
     //{/* backgroundColor: "#FEBB0277", border: "none" }}>*/}
     return (
-        <Card variant="outlined" sx={{ display: "flex" }}>
+        <Card  >
             <CardMedia
                 component="img"
-                sx={{ maxWidth: "35%" }}
+                
                 image={photo}
                 alt="Live from space album cover"
             />
 
-            <Grid container spacing={3} sx={{ p: 2 }} >
+            <Grid container spacing={0} sx={{ p: 2 }} >
 
-                <Grid item xs={12} md={9} >
+                <Grid item xs={12} md={8} >
                     <Typography
                         align="left"
                         variant="h5"
@@ -53,16 +52,9 @@ export default function PropertyCard({
                     >
                         {description}
                     </Typography>
-                    <Box sx={{ display: "flex", gap: 2,mt:2 }}>
-                        {
-                            amenities != undefined ?
-                                amenities.map((a, i) => (
-                                    <Typography key={i} sx={{ display: "flex", alignItems: "center" }}>{getIcon(a)}{a}</Typography>
-                                )) : <></>
-                        }
-                    </Box>
+
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Box sx={{ display: "flex", gap: 0, flexDirection: "column", justifyContent: "flex-end", height: "100%" }}>
                         <Typography
                             align="left"

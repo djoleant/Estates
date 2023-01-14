@@ -23,6 +23,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Search from "@mui/icons-material/Search";
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from "react-router-dom";
+import PropertyCard from "./components/HomePropertyCard";
 
 // home page - samo pretraga ( za ostalo videti kasnije)
 
@@ -51,56 +52,60 @@ export default function HomePage(props) {
   const update = () => {
     //getSearchData();
     props.reloadHeader();
-}
+  }
+
+  const [data, setData] = useState([
+    { id: "1", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"], amenities: ["Pool", "Laundry room", "Sauna", "AC"] },
+    { id: "2", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+    { id: "3", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+    { id: "4", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+    { id: "5", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] },
+    { id: "6", name: "Property Name", description: "This is some example description...", photos: ["https://www.gannett-cdn.com/presto/2021/01/12/NPBD/08d0fd5e-2255-4d49-b608-e83342ae4615-PBN_POOL_REAR_535_N_County_Road_HiRes_PictureItSoldFL.jpg?crop=1279,720,x0,y64&width=1279&height=720&format=pjpg&auto=webp"] }
+
+  ]);
 
   return (
-    <Box>
+    <Box sx={{ backgroundImage: "url('" + process.env.PUBLIC_URL + "/images/back.svg')", backgroundSize: "100%" }}>
       <CssBaseline />
       <React.Fragment>
-        <Paper style={{width:"70%",height:1000, margin: "auto", opacity:"80%"}}>
+
 
         {/* //   opacity:"80%",
         //   backgroundImage: theme.palette.mode === 'dark' ?
         //     "url(" + process.env.PUBLIC_URL + "/images/im.jpg" + ")"
         //     : "url(" + process.env.PUBLIC_URL + "/images/im.jpg" + ")" */}
         <Grid fullwidth style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: 20 }}>
-        <Avatar
-                variant="rounded"
-                alt="Remy Sharp"
-                src={theme.palette.mode === 'dark' ? process.env.PUBLIC_URL + "/images/rdark.png" : process.env.PUBLIC_URL + "/images/researchist.png"}
-                sx={{ width: 400, height: 190, marginRight: 1, justifySelf: "center", marginTop:20 }}
-              />
-          <Typography style={{ alignSelf: "center", fontSize: 32, fontWeight: 800, marginTop: 10, color: "#7E32B0"}}> Where research begins.</Typography>
+
+          <Typography variant="h1" style={{ alignSelf: "center", fontWeight: 800, marginTop: 200, color: "white", fontSize: 150 }}> ESTATES</Typography>
+          <Button variant="contained" sx={{ backgroundColor: "#FEBB02", fontSize: 42 }}>Explore</Button>
         </Grid>
 
         <Grid fullwidth style={{ marginTop: 10, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", height: "10%" }}>
         </Grid>
         {/* <Divider style={{ marginTop: 10, marginBottom: 20 }}></Divider> */}
-        <Grid style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-                        <Grid container xs={12} md={6} lg={6} style={{ display: "flex", flexDirection: "row", padding: "10px", width: "90%", justifyContent: "center", alignItems: "center" }}>
-                            <TextField style={{ marginBottom: 5 }}
-                                onChange={(event) => { setSearch(event.target.value) }}
-                                id="outlined-basic-email"
-                                label="Start typing..."
-                                variant="outlined"
-                                fullWidth
-                            />
-                        </Grid>
+        <Grid container xs={12} spacing={4} sx={{p:10}}>
+          {
+            data.map(d => (
+              <Grid item xs={12} md={4}>
+                <PropertyCard
+                  photo={d.photos[0]}
+                  address={"address here"}
+                  area="24"
+                  price={10000}
+                  name="Property name"
+                />
+              </Grid>
+            ))
 
-                        <Button
-                            sx={{ m: 1, borderRadius: 50, backgroundColor:"#7E32B0" }}
-                            variant="contained"
-                            href={"/Search/" + search}  //ovo treba da vodi do djoletove stranice
-                        >
-                            {" "}
-                            <SearchIcon size="large" />
-                        </Button>
+          }
 
-                    </Grid>
 
-      </Paper>
+
+        </Grid>
+
+
       </React.Fragment>
-      
+
     </Box>
   );
 

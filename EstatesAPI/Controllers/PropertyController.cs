@@ -12,7 +12,7 @@ namespace EstatesAPI.Controllers;
 public class PropertyController : ControllerBase
 {
     private readonly PropertyService _propertyService;
-       
+
     public PropertyController(PropertyService propertyService) =>
         _propertyService = propertyService;
 
@@ -49,15 +49,15 @@ public class PropertyController : ControllerBase
             filter = filter & builder.Gte(p => p.Area, minArea);
         if (maxArea != null)
             filter = filter & builder.Lte(p => p.Area, maxArea);
-        if (propertyType != null) 
-            filter=filter& builder.Eq(p => p.PropertyType, propertyType);
-        if(minPrice!=null)
+        if (propertyType != null)
+            filter = filter & builder.Eq(p => p.PropertyType, propertyType);
+        if (minPrice != null)
             filter = filter & builder.Gte(p => p.Price, minPrice);
-        if(maxPrice!=null)
-            filter=filter & builder.Lte(p => p.Price, maxPrice);
+        if (maxPrice != null)
+            filter = filter & builder.Lte(p => p.Price, maxPrice);
         if (petFriendly != null)
             filter = filter & builder.Eq(p => p.PetFriendly, petFriendly);
-      
+
         var properties = _propertyService.Collection.Find(filter);
         return Ok(await properties.ToListAsync());
     }
@@ -71,7 +71,7 @@ public class PropertyController : ControllerBase
         await _propertyService.CreateAsync(newProperty);
 
         return CreatedAtAction(nameof(Get), new { id = newProperty.Id }, newProperty);
-    
+
     }
 
     // Put:

@@ -9,6 +9,27 @@ namespace EstatesAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("CORS",
+                                policy =>
+                                {
+                                    policy.WithOrigins("http://localhost:5500",
+                                                "https://localhost:3000",
+                                                "https://localhost:5500",
+                                                "https://127.0.0.1:5500",
+                                                "http://localhost:3000",
+                                                "http://localhost:5100",
+                                                "https://localhost:5100",
+                                                "https://127.0.0.1:5100")
+                                                .AllowAnyHeader()
+                                    .AllowAnyMethod()
+                                    .AllowCredentials();
+                                    // policy.AllowAnyOrigin();
+                                    // policy.AllowAnyHeader();
+                                });
+            });
+
             // Add services to the container.
             builder.Services.Configure<EstateDatabaseSettings>(
                 builder.Configuration.GetSection("EstateDB"));
@@ -23,6 +44,8 @@ namespace EstatesAPI
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            app.UseCors("CORS");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
