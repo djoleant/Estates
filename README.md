@@ -24,11 +24,11 @@ Estates is student project done for Advanced Databases subject at Faculty of Ele
 > cd Estates
 
 > # Server start
-> cd Researchist/Researchist
+> cd EstatesAPI
 > dotnet watch run
 
 > # Client start
-> cd ../../ResearchistApp
+> cd ../EstatesApp
 > npm install
 > npm start
 
