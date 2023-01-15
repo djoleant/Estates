@@ -24,29 +24,31 @@ import ProceedingPage from "./ProceedingPage";
 import DeletedPaperPage from "./DeletedPaperPage";
 import Search from "./Search";
 import FilterProperties from "./FilterProperties";
+import Client from "./Client";
+import Landlord from "./Landlord";
 
 const getDesignTokens = (mode) => ({
   palette: {
     mode,
     ...(mode === "light"
       ? {
-        // palette values for light mode
-        primary: {
-          main: "#003580",
-        },
-        secondary: {
-          main: "#f50057",
-        },
-      }
+          // palette values for light mode
+          primary: {
+            main: "#003580",
+          },
+          secondary: {
+            main: "#f50057",
+          },
+        }
       : {
-        // palette values for dark mode
-        primary: {
-          main: "#003580",
-        },
-        secondary: {
-          main: "#f50057",
-        },
-      }),
+          // palette values for dark mode
+          primary: {
+            main: "#003580",
+          },
+          secondary: {
+            main: "#f50057",
+          },
+        }),
   },
   overrides: {
     MuiSwitch: {
@@ -204,7 +206,7 @@ const themeOptions2 = createTheme({
 const themes = [themeOptions, themeOptions2];
 export let changeTheme;
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => { } });
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 export default function App() {
   const [mode, setMode] = React.useState(
@@ -277,6 +279,24 @@ export default function App() {
             element={
               <Header
                 Component={NotFoundPage}
+                ThemeHandler={colorMode.toggleColorMode}
+              />
+            }
+          />
+          <Route
+            path="/Landlord/:id"
+            element={
+              <Header
+                Component={Landlord}
+                ThemeHandler={colorMode.toggleColorMode}
+              />
+            }
+          />
+          <Route
+            path="/Client/:id"
+            element={
+              <Header
+                Component={Client}
                 ThemeHandler={colorMode.toggleColorMode}
               />
             }
