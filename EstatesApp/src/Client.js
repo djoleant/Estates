@@ -10,11 +10,11 @@ import {
   Grid,
   useTheme,
 } from "@mui/material";
-import CardList from "./components/Profile/CardList";
-import EditStudentProfileDialog from "./components/Profile/EditPerson";
-import { useParams } from "react-router-dom";
+import EditClient from "./components/Client/EditClient";
+import { Navigate, useParams } from "react-router-dom";
+import ReviewCard from "./components/Landlord/ReviewCard";
 
-export default function Client({ type, reloadHeader }) {
+export default function Landlord({ type, reloadHeader }) {
   const theme = useTheme();
 
   function TabPanel(props) {
@@ -41,19 +41,17 @@ export default function Client({ type, reloadHeader }) {
 
   const [info, setInfo] = useState({
     name: "",
-    surname: "",
-    institution: "",
     contact: "",
-    role: "",
+    reviews: [],
+    hasPet: false,
     id: "",
-    picture: "",
   });
 
   const { id } = useParams();
 
   const getInfo = async () => {
     const response = await fetch(
-      "http://localhost:5211/api/Person/GetPersonInfo/" + id,
+      "http://localhost:5100/api/Client/GetClient/" + id,
       {
         credentials: "include",
       }
@@ -61,7 +59,17 @@ export default function Client({ type, reloadHeader }) {
     const fetchData = await response.json();
     console.log(fetchData);
     setInfo(fetchData);
-    
+  };
+
+  const calculateAvgRating = () => {
+    let initSum = 0;
+    let averageRating;
+    info.reviews.forEach((review) => {
+      initSum = initSum + review.rating;
+    });
+    averageRating =
+      Math.round((initSum * 100) / parseFloat(info.reviews.length)) / 100;
+    return averageRating;
   };
 
   const update = () => {
@@ -77,40 +85,23 @@ export default function Client({ type, reloadHeader }) {
     <Container component="main" sx={{ pt: 3 }}>
       <CssBaseline />
       <Grid container spacing={3}>
-        <Grid
-          item
-          xs={12}
-          md={2}
-          sx={{ display: "flex", justifyContent: "center" }}
-        >
-          <Avatar
-            src={decodeURIComponent(info.profilePicture)}
-            sx={{ width: 140, height: 140 }}
-            
-          />{console.log(decodeURI(info.profilePicture))}
-        </Grid>
         <Grid item xs={12} md={10}>
           <Typography variant="h3" align="left">
-            {info != undefined
-              ? info.name + " " + info.surname
-              : ", " +
-                (info.role === 0
-                  ? "Professor"
-                  : info.role === 1
-                  ? "Student"
-                  : "Mr/Mrs")}
+            {info != undefined ? info.name : ""} ✨
+            {info != undefined ? calculateAvgRating() : ""}
           </Typography>
           <Typography align="left">
-            {info != undefined ? info.institution : ""}
+            {info != undefined ? "🧑 Client" : ""}
           </Typography>
           <Typography align="left">
-            {info != undefined ? info.contact : ""}
+            {info != undefined ? "📞 " + info.contact : ""}
           </Typography>
           <Box sx={{ display: type === "public" ? "none" : "flex", mt: 1 }}>
-            <EditStudentProfileDialog
-              currentPicture={info.picture}
-              currentLastName={info.lastName}
+            <EditClient
               currentName={info.name}
+              currentContact={info.contact}
+              hasPet={info.hasPet}
+              Reviews={info.reviews}
               update={update}
             />
           </Box>
@@ -128,30 +119,47 @@ export default function Client({ type, reloadHeader }) {
             backgroundColor: theme.palette.background.default,
           }}
         >
-          <Tabs
-            value={value}
-            variant="scrollable"
-            scrollButtons
-            onChange={handleChange}
-            aria-label="basic tabs example"
-          >
-            <Tab label="Papers" />
-            <Tab
-              label="Proceedings"
-              sx={{ display: type === "public" ? "none" : "" }}
-            />
-            {/* <Tab label="Categories" sx={{ display: type === "public" ? "none" : "" }} /> */}
-          </Tabs>
+          
         </Box>
-        <TabPanel value={value} index={0}>
-          <CardList type="papers" />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <CardList type="proceedings" />
-        </TabPanel>
-        {/* <TabPanel value={value} index={2}>
-                    <CardList type="categories" />
-                </TabPanel> */}
+
+        <Grid item xs={12} key={id} padding={3}>
+          {info.reviews == undefined || info.reviews.length == 0 ? (
+            <Typography>No reviews found 😒</Typography>
+          ) : (
+            ""
+          )}
+          {info.reviews != null && (
+            <Grid
+              container
+              spacing={2}
+              /*xs={12} md={6} lg={6}*/
+            >
+              {info.reviews
+                //.filter(c => c.title.toLowerCase().includes(search.toLowerCase()))
+                .map((card, index) => {
+                  const {
+                    id,
+                    authorID,
+                    postID,
+                    text,
+                    downvotes,
+                    upvotes,
+                    time,
+                  } = card;
+                  console.log(card);
+                  return (
+                    <ReviewCard
+                      text={card.text}
+                      rating={card.rating}
+                      personName={card.personName}
+                    />
+                  );
+                })}
+            </Grid>
+          )}
+        </Grid>
+
+        
       </Box>
     </Container>
   );

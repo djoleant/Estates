@@ -10,9 +10,10 @@ import {
   Grid,
   useTheme,
 } from "@mui/material";
-import CardList from "./components/Profile/CardList";
+import PropertyList from "./components/Landlord/PropertyList";
 import EditLandlord from "./components/Landlord/EditLandlord";
 import { Navigate, useParams } from "react-router-dom";
+import ReviewCard from "./components/Landlord/ReviewCard";
 
 export default function Landlord({ type, reloadHeader }) {
   const theme = useTheme();
@@ -47,6 +48,7 @@ export default function Landlord({ type, reloadHeader }) {
     id: "",
   });
 
+
   const { id } = useParams();
 
   const getInfo = async () => {
@@ -59,6 +61,16 @@ export default function Landlord({ type, reloadHeader }) {
     const fetchData = await response.json();
     console.log(fetchData);
     setInfo(fetchData);
+  };
+
+  const calculateAvgRating = () => {
+    let initSum = 0;
+    let averageRating;
+    info.reviews.forEach((review) => {
+      initSum = initSum + review.rating;
+    });
+    averageRating = Math.round(initSum*100 / parseFloat(info.reviews.length))/100;
+    return averageRating
   };
 
   const update = () => {
@@ -76,20 +88,21 @@ export default function Landlord({ type, reloadHeader }) {
       <Grid container spacing={3}>
         <Grid item xs={12} md={10}>
           <Typography variant="h3" align="left">
-           { info != undefined ? info.name : ""}
+            {info != undefined ? info.name : ""} ✨
+            {info != undefined ? calculateAvgRating() : ""}
           </Typography>
           <Typography align="left">
-            {info != undefined ? "Landlord" : ""}
+            {info != undefined ? "🧑‍💼 Landlord" : ""}
           </Typography>
           <Typography align="left">
-            {info != undefined ? info.contact : ""}
+            {info != undefined ? "📞" + info.contact: ""}
           </Typography>
           <Box sx={{ display: type === "public" ? "none" : "flex", mt: 1 }}>
             <EditLandlord
               currentName={info.name}
               currentContact={info.contact}
-              Properties = {info.propertyIds}
-              Reviews = {info.reviews}
+              Properties={info.propertyIds}
+              Reviews={info.reviews}
               update={update}
             />
           </Box>
@@ -114,19 +127,57 @@ export default function Landlord({ type, reloadHeader }) {
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab label="Papers" />
+            <Tab label="Property list" />
             <Tab
-              label="Proceedings"
+              label="Reviews"
               sx={{ display: type === "public" ? "none" : "" }}
             />
             {/* <Tab label="Categories" sx={{ display: type === "public" ? "none" : "" }} /> */}
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <CardList type="papers" />
+          <PropertyList PropertyIds={info.propertyIds} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <CardList type="proceedings" />
+          {/* <CardList type="proceedings" /> */}
+          {/* OVDE IDE REVIEWS LIST THING !!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+
+          <Grid item xs={12} key={id} padding={3}>
+            {info.reviews == undefined || info.reviews.length == 0 ? (
+              <Typography>No reviews found 😒</Typography>
+            ) : (
+              ""
+            )}
+            {info.reviews != null && (
+              <Grid
+                container
+                spacing={2}
+                /*xs={12} md={6} lg={6}*/
+              >
+                {info.reviews
+                  //.filter(c => c.title.toLowerCase().includes(search.toLowerCase()))
+                  .map((card, index) => {
+                    const {
+                      id,
+                      authorID,
+                      postID,
+                      text,
+                      downvotes,
+                      upvotes,
+                      time,
+                    } = card;
+                    console.log(card);
+                    return (
+                      <ReviewCard
+                        text={card.text}
+                        rating={card.rating}
+                        personName={card.personName}
+                      />
+                    );
+                  })}
+              </Grid>
+            )}
+          </Grid>
         </TabPanel>
         {/* <TabPanel value={value} index={2}>
                     <CardList type="categories" />
