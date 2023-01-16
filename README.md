@@ -1,4 +1,4 @@
-# Estates - MongoDB ![Logo](https://raw.githubusercontent.com/mongodb/mongo/master/docs/leaf.svg)
+# Estates ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 Estates is student project done for Advanced Databases subject at Faculty of Electronic Engineering, University of Niš.
 
 ## ✨ Contributors (Student, ID)
