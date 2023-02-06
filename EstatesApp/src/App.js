@@ -12,6 +12,8 @@ import HomePage from "./HomePage";
 import AboutUsPage from "./AboutUsPage";
 
 import NotFoundPage from "./components/NotFoundPage";
+import AddedPropertyPage from "./components/AddedPropertyPage";
+import PropertyProfile from "./components/PropertyProfile";
 
 import PaperCreator from "./CreatePaper";
 import ProfilePage from "./ProfilePage";
@@ -20,6 +22,7 @@ import ConcreteCategoryPage from "./ConcreteCategoryPage";
 import CreateProfile from "./CreateProfile";
 
 import PaperInfoPage from "./PaperInfoPage";
+import AddProperty from "./AddProperty";
 import ProceedingPage from "./ProceedingPage";
 import DeletedPaperPage from "./DeletedPaperPage";
 import Search from "./Search";
@@ -293,6 +296,15 @@ export default function App() {
             }
           />
           <Route
+            path="/AddProperty"
+            element={
+              <Header
+                Component={AddProperty}
+                ThemeHandler={colorMode.toggleColorMode}
+              />
+            }
+          />
+          <Route
             path="/Client/:id"
             element={
               <Header
@@ -365,10 +377,28 @@ export default function App() {
             }
           />
           <Route
+            path="/AddedPropertyPage"
+            element={
+              <Header
+                Component={AddedPropertyPage}
+                ThemeHandler={colorMode.toggleColorMode}
+              />
+            }
+          />
+          <Route
             path="/Search/:param"
             element={
               <Header
                 Component={Search}
+                ThemeHandler={colorMode.toggleColorMode}
+              />
+            }
+          />
+          <Route
+            path="/PropertyProfile/:id"
+            element={
+              <Header
+                Component={PropertyProfile}
                 ThemeHandler={colorMode.toggleColorMode}
               />
             }
