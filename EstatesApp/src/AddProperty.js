@@ -57,7 +57,21 @@ export default function AddProperty(props) {
                 headers: {
                     'Content-Type': 'application/json',
                   },
-                body: JSON.stringify({id:"", name: propertyName, description: propertyDescription, cityName: propertyCity, address: propertyAddress, photos:[], area: propertyArea, propertyType: propertyType, roomCount:propertyRoomCount, amenities: amenityList, price: propertyPrice, expensesCovered: propertyExpensesCovered, petFriendly: propertyPetFriendly, minimalRentPeriod: propertyMinRent, qAs:[]  })
+                body: JSON.stringify({"id":"", 
+                "name": propertyName, 
+                "description": propertyDescription, 
+                "cityName": propertyCity, 
+                "address": propertyAddress, 
+                "photos":[], 
+                "area": propertyArea, 
+                "propertyType": propertyType, 
+                "roomCount":propertyRoomCount, 
+                "amenities": amenityList.amenities, 
+                "price": propertyPrice, 
+                "expensesCovered": propertyExpensesCovered, 
+                "petFriendly": propertyPetFriendly, 
+                "minimalRentPeriod": propertyMinRent, 
+                "qAs":[]  })
             }
         )
         if (response.ok) {
@@ -65,7 +79,7 @@ export default function AddProperty(props) {
             console.log(data);
             const response2 = await fetch(
                 "http://localhost:5100/api/Landlord/AddPropertyToLandlord/" +
-                data.id, "/63c077a69352d5a35952c645",
+                data.id + "/63c077a69352d5a35952c645",
                 {
                     method: "PUT",
                     credentials: "include",
@@ -97,9 +111,9 @@ export default function AddProperty(props) {
 
     const [propertyMinRent, setPropertyMinRent] = useState(0);
 
-    const [propertyPetFriendly, setPropertyPetFriendly] = useState(0);
+    const [propertyPetFriendly, setPropertyPetFriendly] = useState(true);
 
-    const [propertyExpensesCovered, setPropertyExpensesCovered] = useState(0);
+    const [propertyExpensesCovered, setPropertyExpensesCovered] = useState(true);
 
     const [amenityList, setAmenityList] = useState([{ amenities: "" }]);
 

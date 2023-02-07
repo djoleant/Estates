@@ -97,7 +97,7 @@ export default function PropertyProfile({ type, reloadHeader }) {
           "http://localhost:5100/api/QA/Answer/" + id + "/"+
           newAnswer[index].answer2+"/"+index,
           {
-            method: "POST",
+            method: "PUT",
             credentials: "include",
             headers: {
               Accept: "application/json",
