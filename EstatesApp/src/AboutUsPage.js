@@ -50,7 +50,7 @@ export default function AboutUsPage(props) {
             >
               GET TO KNOW{" "}
               <Link style={{ color: "#618fba", textDecoration: "none" }}>
-                RESEARCHIST
+                ESTATES
               </Link>
             </Typography>
           </Grid>
@@ -76,11 +76,11 @@ export default function AboutUsPage(props) {
               align="center"
               sx={{ m: 2, color: "#bbbbbb" }}
             >
-              Researchist is beautiful. Researchist is beautiful. Researchist is
-              beautiful. Researchist is beautiful. Researchist is beautiful.
-              Researchist is beautiful. Researchist is beautiful. Researchist is
-              beautiful. Researchist is beautiful. Researchist is beautiful.
-              Researchist is beautiful. Researchist is beautiful.
+              Estates is beautiful. Estates is beautiful. Estates is
+              beautiful. Estates is beautiful. Estates is beautiful.
+              Estates is beautiful. Estates is beautiful. Estates is
+              beautiful. Estates is beautiful. Estates is beautiful.
+              Estates is beautiful. Estates is beautiful.
             </Typography>
           </Box>
 
@@ -138,7 +138,7 @@ export default function AboutUsPage(props) {
                   Emilija Ćojbašić
                 </Typography>
                 <Typography>
-                  Emilija is one of the three lead developers of Researchist. She
+                  Emilija is one of the three lead developers of Estates. She
                   has been a valuable member of the RuntimeTerror team since it
                   first started out in 2022.
                 </Typography>
@@ -217,7 +217,7 @@ export default function AboutUsPage(props) {
                   Djordje Antić
                 </Typography>
                 <Typography>
-                  Djordje is one of the three lead developers of Researchist. He
+                  Djordje is one of the three lead developers of Estates. He
                   has been a valuable member of the RuntimeTerror team since it
                   first started out in 2022.
                 </Typography>
@@ -298,7 +298,7 @@ export default function AboutUsPage(props) {
                   Matija Špeletić
                 </Typography>
                 <Typography>
-                  Matija is one of the three lead developers of Researchist. He
+                  Matija is one of the three lead developers of Estates. He
                   has been a valuable member of the RuntimeTerror team since it
                   first started out in 2022.
                 </Typography>

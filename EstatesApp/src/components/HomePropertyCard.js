@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function PropertyCard({
-    name, photo, description, address, area, price, amenities
+    id, name, photo, description, address, area, price, amenities
 }) {
 
     const navigate = useNavigate();
@@ -16,9 +16,9 @@ export default function PropertyCard({
         <Card  >
             <CardMedia
                 component="img"
-                
+                onClick={()=>{navigate("/PropertyProfile/"+id)}}
                 image={photo}
-                alt="Live from space album cover"
+                alt="EstatesCopyright"
             />
 
             <Grid container spacing={0} sx={{ p: 2 }} >

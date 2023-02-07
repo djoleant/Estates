@@ -8,7 +8,7 @@ import { useState } from "react";
 import getIcon from "./Icons";
 
 export default function PropertyCard({
-    name, photo, description, address, area, price, amenities
+    id, name, photo, description, address, area, price, amenities
 }) {
 
     const navigate = useNavigate();
@@ -19,7 +19,8 @@ export default function PropertyCard({
                 component="img"
                 sx={{ maxWidth: "35%" }}
                 image={photo}
-                alt="Live from space album cover"
+                alt=""
+                onClick={()=>{navigate("/PropertyProfile/"+id)}}
             />
 
             <Grid container spacing={3} sx={{ p: 2 }} >

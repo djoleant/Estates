@@ -89,7 +89,7 @@ export default function HomePage(props) {
         <Grid fullwidth style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", marginBottom: 20 }}>
 
           <Typography variant="h1" style={{ alignSelf: "center", fontWeight: 800, marginTop: 200, color: "white", fontSize: 150 }}> ESTATES</Typography>
-          <Button variant="contained" sx={{ backgroundColor: "#FEBB02", fontSize: 42 }}>Explore</Button>
+          <Button variant="contained" sx={{ backgroundColor: "#FEBB02", fontSize: 42 }} onClick={()=>{navigate("/FilterProperties")}}>Explore</Button>
         </Grid>
 
         <Grid fullwidth style={{ marginTop: 10, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", height: "10%" }}>
@@ -100,6 +100,7 @@ export default function HomePage(props) {
             data.map(d => (
               <Grid item xs={12} md={4}>
                 <PropertyCard
+                  id={d.id}
                   photo={d.photos[0]}
                   address={d.address}
                   area={d.area}

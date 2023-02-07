@@ -12,11 +12,13 @@ import {
 } from "@mui/material";
 import PropertyList from "./components/Landlord/PropertyList";
 import EditLandlord from "./components/Landlord/EditLandlord";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import ReviewCard from "./components/Landlord/ReviewCard";
 
 export default function Landlord({ type, reloadHeader }) {
   const theme = useTheme();
+
+  const navigate = useNavigate();
 
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -105,6 +107,9 @@ export default function Landlord({ type, reloadHeader }) {
               Reviews={info.reviews}
               update={update}
             />
+            <Button variant="contained" sx={{ml:2}} onClick={()=>{navigate("/AddProperty/"+id)}}>
+              Add Property
+            </Button>
           </Box>
         </Grid>
       </Grid>
