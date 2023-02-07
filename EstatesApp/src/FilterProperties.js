@@ -15,7 +15,6 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
-import PaperCard from "./components/Search/PaperCard";
 import { useParams } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import PropertyCard from "./components/Filter/PropertyCard";

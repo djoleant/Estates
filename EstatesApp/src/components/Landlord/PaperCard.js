@@ -44,7 +44,7 @@ export default function PaperCard({ info, index }) {
         <Grid container item xs={12}>
           <Grid item xs={10} sx={{ display: "flex", flexDirection: "row" }}>
             <Link
-              href={"http://"}
+              href={"/PropertyProfile/" + infos.id}
               variant="h5"
               align="left"
               sx={{ align: "left" }}

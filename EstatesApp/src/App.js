@@ -1,12 +1,9 @@
-import logo from "./logo.svg";
 import * as React from "react";
 import "./App.css";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import { Routes, Route, Link } from "react-router-dom";
 import Header from "./components/Header";
-import { Component } from "react";
 
 import HomePage from "./HomePage";
 import AboutUsPage from "./AboutUsPage";
@@ -15,20 +12,11 @@ import NotFoundPage from "./components/NotFoundPage";
 import AddedPropertyPage from "./components/AddedPropertyPage";
 import PropertyProfile from "./components/PropertyProfile";
 
-import PaperCreator from "./CreatePaper";
-import ProfilePage from "./ProfilePage";
-import Categories from "./Categories";
-import ConcreteCategoryPage from "./ConcreteCategoryPage";
-import CreateProfile from "./CreateProfile";
-
-import PaperInfoPage from "./PaperInfoPage";
 import AddProperty from "./AddProperty";
-import ProceedingPage from "./ProceedingPage";
-import DeletedPaperPage from "./DeletedPaperPage";
-import Search from "./Search";
 import FilterProperties from "./FilterProperties";
 import Client from "./Client";
 import Landlord from "./Landlord";
+import Landlords from "./LandlordsPage";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -314,68 +302,15 @@ export default function App() {
             }
           />
           <Route
-            path="/CreatePaper"
+            path="/Landlords"
             element={
               <Header
-                Component={PaperCreator}
+                Component={Landlords}
                 ThemeHandler={colorMode.toggleColorMode}
               />
             }
           />
-          <Route
-            path="/CreateProfile/:role"
-            element={
-              <Header
-                Component={CreateProfile}
-                ThemeHandler={colorMode.toggleColorMode}
-              />
-            }
-          />
-          <Route
-            path="/ProfilePage/:id"
-            element={
-              <Header
-                Component={ProfilePage}
-                ThemeHandler={colorMode.toggleColorMode}
-              />
-            }
-          />
-          <Route
-            path="/Categories"
-            element={
-              <Header
-                Component={Categories}
-                ThemeHandler={colorMode.toggleColorMode}
-              />
-            }
-          />
-          <Route
-            path="/Categories/:id"
-            element={
-              <Header
-                Component={ConcreteCategoryPage}
-                ThemeHandler={colorMode.toggleColorMode}
-              />
-            }
-          />
-          <Route
-            path="/PaperInfoPage/:id"
-            element={
-              <Header
-                Component={PaperInfoPage}
-                ThemeHandler={colorMode.toggleColorMode}
-              />
-            }
-          />
-          <Route
-            path="/ProceedingPage/:id"
-            element={
-              <Header
-                Component={ProceedingPage}
-                ThemeHandler={colorMode.toggleColorMode}
-              />
-            }
-          />
+          
           <Route
             path="/AddedPropertyPage"
             element={
@@ -385,15 +320,7 @@ export default function App() {
               />
             }
           />
-          <Route
-            path="/Search/:param"
-            element={
-              <Header
-                Component={Search}
-                ThemeHandler={colorMode.toggleColorMode}
-              />
-            }
-          />
+          
           <Route
             path="/PropertyProfile/:id"
             element={

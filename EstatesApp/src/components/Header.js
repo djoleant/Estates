@@ -23,7 +23,7 @@ import { Divider } from "@mui/material";
 // import { logout } from "../actions/Auth";
 import { useTheme } from "@emotion/react";
 
-const pages = ["Home", "Properties", "About"];
+const pages = ["Home", "Properties", "Landlords", "About"];
 
 export const Header = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -49,16 +49,16 @@ export const Header = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  
+
 
   const theme = useTheme();
 
   const reloadHeader = () => {
-    
+
     handleCloseUserMenu();
   }
 
- 
+
   return (
     <React.Fragment>
 
@@ -104,7 +104,7 @@ export const Header = (props) => {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={() => { navigate("/" + (page=="Properties"?"FilterProperties":page)) }}>
+                  <MenuItem key={page} onClick={() => { navigate("/" + (page == "Properties" ? "FilterProperties" : page)) }}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 ))}
@@ -122,7 +122,7 @@ export const Header = (props) => {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={() => { navigate("/" + (page=="Properties"?"FilterProperties":page)) }}
+                  onClick={() => { navigate("/" + (page == "Properties" ? "FilterProperties" : page)) }}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
                   {page}
@@ -131,12 +131,12 @@ export const Header = (props) => {
             </Box>
 
 
-            
-                <>
-                  <MenuItem onClick={ThemeHandler}>
-                    <Switch checked={localStorage.getItem("mode") === "dark"} />
-                  </MenuItem>
-                </>
+
+            <>
+              <MenuItem onClick={ThemeHandler}>
+                <Switch checked={localStorage.getItem("mode") === "dark"} />
+              </MenuItem>
+            </>
           </Toolbar>
         </Container>
       </AppBar>
