@@ -27,30 +27,25 @@ export default function PropertyProfile({ type, reloadHeader }) {
 
     const theme = useTheme();
 
-    var curInd=0;
-
     const { id } = useParams();
 
     const navigate = useNavigate();
 
     const [newQuestion, setNewQuestion] = useState([]);
 
-    const [newAnswer, setNewAnswer] = useState("");
-
-    const [newAnswerIndex, setNewAnswerIndex] = useState(0);
+    //const [newAnswerIndex, setNewAnswerIndex] = useState(0);
 
     const handleQAChange = async (event) => {
         setNewQuestion(event.target.value);
-      };
+    };
 
-      const handleAQChange = async (event) => {
-        setNewAnswer(event.target.value);
-      };
+    // const handleAQChange = async (event) => {
+    //     setNewAnswer(event.target.value);
+    // };
 
-      const handleAIndexChange = async (event) => {
-        setNewAnswerIndex(event.target.value);
-      };
-
+    // const handleAIndexChange = async (event) => {
+    //     setNewAnswerIndex(event.target.value);
+    // };
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
 
@@ -95,29 +90,29 @@ export default function PropertyProfile({ type, reloadHeader }) {
         }
       }
 
-      async function _submitAnswer(values, actions) {
-        console.log(newAnswer);
-        console.log(curInd);
-        // const response = await fetch(
-        //   "http://localhost:5100/api/QA/Answer/" + id + "/"+
-        //     newAnswer+"/"+newAnswerIndex,
-        //   {
-        //     method: "POST",
-        //     credentials: "include",
-        //     headers: {
-        //       Accept: "application/json",
-        //       "Content-Type": "application/json",
-        //     },
-        //   }
-        // );
+      async function _submitAnswer(index) {
+        console.log(newAnswer[index].answer2);
+        console.log(index);
+        const response = await fetch(
+          "http://localhost:5100/api/QA/Answer/" + id + "/"+
+          newAnswer[index].answer2+"/"+index,
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        );
     
-        // getInfo();
+        getInfo();
     
-        // if (response.ok) {
-        //   const data = await response.json();
-        //   // setSubmitted("yes");
-        //   getInfo();
-        // }
+        if (response.ok) {
+          const data = await response.json();
+          // setSubmitted("yes");
+          getInfo();
+        }
       }
 
     const [value, setValue] = React.useState(0);
@@ -151,9 +146,29 @@ export default function PropertyProfile({ type, reloadHeader }) {
             console.log(fetchData)
             //if (fetchData.cv.education.length > 0) {
             setInfo(fetchData);
+            setNewAnswer(fetchData.qAs);
             //}
         }
     }
+
+    const [newAnswer, setNewAnswer] = useState(info.qAs);
+
+    console.log("NA" + newAnswer);
+
+    const handleAnswerRemove = (index) => {
+        const list = [...newAnswer];
+        list.splice(index, 1);
+        setNewAnswer(list);
+    }
+
+    const handleAnswerChange = (event, index) => {
+        const { value, name } = event.target;
+        const list = [...newAnswer];
+        list[index][name] = value;
+        setNewAnswer(list);
+        console.log(list);
+    }
+
 
     const update = () => {
         getInfo();
@@ -303,7 +318,7 @@ export default function PropertyProfile({ type, reloadHeader }) {
                                 })}
                 </TabPanel>
                 <TabPanel value={value} index={3}>
-                <TextField name={"amenity"} 
+                <TextField name={"question"} 
                 value={newQuestion} 
                 onChange={(event) => handleQAChange(event)} style={{ marginBottom: 10, marginRight: 5 }} 
                 label={"Ask a new question about this property"} 
@@ -334,11 +349,11 @@ export default function PropertyProfile({ type, reloadHeader }) {
                                             align="center"
                                             sx={{ mt:1, mb:1, display: info.price == undefined ? "none" : "" }}
                                         >
-                                            {"Answer to Q"+(index+1)+":"} {qa.answer==null?<Grid><TextField name={"amenity"} 
-                                            value={newAnswer} 
-                                            onChange={(event) => {handleAQChange(event);curInd=index}} style={{ marginBottom: 10, marginRight: 5 }} 
+                                            {"Answer to Q"+(index+1)+":"} {qa.answer==null?<Grid><TextField name={"answer2"} 
+                                            value={newAnswer[index].answer2} 
+                                            onChange={(event) => {handleAnswerChange(event,index)}} style={{ marginBottom: 10, marginRight: 5 }} 
                                             label={"Answer to question "+(index+1)} 
-                                            fullWidth /><Button onClick={_submitAnswer} variant="contained">Answer question</Button></Grid>:qa.answer}
+                                            fullWidth /><Button onClick={()=>_submitAnswer(index)} variant="contained">Answer question</Button></Grid>:qa.answer}
                                         </Typography>
                                         <Divider  style={{marginBottom:10}}></Divider>
                                         </Grid>
