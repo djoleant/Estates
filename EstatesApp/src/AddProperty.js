@@ -66,7 +66,7 @@ export default function AddProperty(props) {
                 "area": propertyArea, 
                 "propertyType": propertyType, 
                 "roomCount":propertyRoomCount, 
-                "amenities": amenityList.amenities, 
+                "amenities": amenityList, 
                 "price": propertyPrice, 
                 "expensesCovered": propertyExpensesCovered, 
                 "petFriendly": propertyPetFriendly, 
@@ -115,15 +115,15 @@ export default function AddProperty(props) {
 
     const [propertyExpensesCovered, setPropertyExpensesCovered] = useState(true);
 
-    const [amenityList, setAmenityList] = useState([{ amenities: "" }]);
+    const [amenityList, setAmenityList] = useState([{}]);
 
     // const handleSubmit = () => console.log(textValue);
 
     const handleAmenityAdd = () => {
-        setAmenityList([...amenityList, { amenity: "" }])
+        setAmenityList([...amenityList, { }])
     }
 
-    console.log(amenityList);
+    console.log("CL " + amenityList);
 
     const handleAmenityRemove = (index) => {
         const list = [...amenityList];
@@ -132,9 +132,9 @@ export default function AddProperty(props) {
     }
 
     const handleAmenityChange = (event, index) => {
-        const { value, name } = event.target;
+        const { value} = event.target;
         const list = [...amenityList];
-        list[index][name] = value;
+        list[index]= value;
         setAmenityList(list);
     }
 
