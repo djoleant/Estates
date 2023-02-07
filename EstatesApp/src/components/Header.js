@@ -23,8 +23,7 @@ import { Divider } from "@mui/material";
 // import { logout } from "../actions/Auth";
 import { useTheme } from "@emotion/react";
 
-const pages = ["Home", "Categories", "About"];
-const settings = ["Account", "CV Creator", "CV Export", "Logout", "Admin Dashboard", "Post internship"];
+const pages = ["Home", "Properties", "About"];
 
 export const Header = (props) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -105,7 +104,7 @@ export const Header = (props) => {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={() => { navigate("/" + page) }}>
+                  <MenuItem key={page} onClick={() => { navigate("/" + (page=="Properties"?"FilterProperties":page)) }}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 ))}
@@ -123,7 +122,7 @@ export const Header = (props) => {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={() => { navigate("/" + page) }}
+                  onClick={() => { navigate("/" + (page=="Properties"?"FilterProperties":page)) }}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
                   {page}
@@ -134,12 +133,6 @@ export const Header = (props) => {
 
             
                 <>
-                  <MenuItem onClick={() => { navigate("/CreateProfile/student") }}>
-                    <Typography textAlign="center">Create Profile</Typography>
-                  </MenuItem >
-                  <MenuItem onClick={() => { navigate("/Createpaper") }}>
-                    <Typography textAlign="center">Create Paper</Typography>
-                  </MenuItem >
                   <MenuItem onClick={ThemeHandler}>
                     <Switch checked={localStorage.getItem("mode") === "dark"} />
                   </MenuItem>
