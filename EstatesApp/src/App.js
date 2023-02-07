@@ -296,7 +296,7 @@ export default function App() {
             }
           />
           <Route
-            path="/AddProperty"
+            path="/AddProperty/:id"
             element={
               <Header
                 Component={AddProperty}

@@ -79,7 +79,7 @@ export default function AddProperty(props) {
             console.log(data);
             const response2 = await fetch(
                 "http://localhost:5100/api/Landlord/AddPropertyToLandlord/" +
-                data.id + "/63c077a69352d5a35952c645",
+                data.id + "/"+id,
                 {
                     method: "PUT",
                     credentials: "include",
